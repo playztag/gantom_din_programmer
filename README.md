@@ -52,17 +52,115 @@ The interface is designed to be intuitive and responsive:
   - Progress indicators and clear status messages
   - Real-time visual representation of channel values in Static Look menu
 
+## Installation and Setup
+
+### Prerequisites
+
+- [PlatformIO](https://platformio.org/) (recommended to use with VSCode)
+- Git
+- USB connection to your M5Stack DinMeter device
+
+### Installing PlatformIO
+
+1. **Install VSCode**:
+   - Download and install [Visual Studio Code](https://code.visualstudio.com/)
+
+2. **Install PlatformIO Extension**:
+   - Open VSCode
+   - Go to Extensions (Ctrl+Shift+X or Cmd+Shift+X on macOS)
+   - Search for "PlatformIO"
+   - Click "Install" on the PlatformIO IDE extension
+
+### Getting the Project
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/playztag/gantom_din_programmer.git
+   cd gantom_din_programmer
+   ```
+
+2. **Open the Project in PlatformIO**:
+   - Launch VSCode
+   - Click on the PlatformIO icon in the sidebar
+   - Select "Open Project"
+   - Navigate to the cloned repository folder
+   - Click "Open"
+
+### Installing Dependencies
+
+PlatformIO will automatically install the required dependencies defined in the `platformio.ini` file when you first open the project. If you need to manually install or update dependencies:
+
+1. **Update Library Dependencies**:
+   - Open the PlatformIO sidebar
+   - Click on "Libraries"
+   - Search for and install any missing libraries:
+     - LovyanGFX
+     - SmoothUIToolKit
+     - ESP32Encoder
+     - Button
+
 ## Building and Flashing
 
-This project uses PlatformIO for building and flashing:
+### Build the Firmware
 
-```bash
-# Build the project
-platformio run
+1. **Compile the Project**:
+   - In the PlatformIO sidebar, click on "Project Tasks"
+   - Expand your environment (usually "esp32-s3-devkitc-1")
+   - Click on "Build" to compile the firmware
 
-# Upload to the device
-platformio run -t upload
-```
+   Or using command line:
+   ```bash
+   platformio run
+   ```
+
+### Flash to Device
+
+1. **Connect your M5Stack DinMeter** to your computer via USB
+
+2. **Upload the Firmware**:
+   - In the PlatformIO sidebar, click on "Project Tasks"
+   - Click on "Upload" to compile and flash the firmware
+
+   Or using command line:
+   ```bash
+   platformio run -t upload
+   ```
+
+### Troubleshooting Connection Issues
+
+If you have trouble connecting to the device:
+
+1. **Check USB Connection**:
+   - Ensure the device is properly connected
+   - Try a different USB cable or port
+
+2. **Identify COM Port**:
+   - Windows: Check Device Manager > Ports (COM & LPT)
+   - macOS: In Terminal, run `ls /dev/cu.*`
+   - Linux: In Terminal, run `ls /dev/ttyUSB*` or `ls /dev/ttyACM*`
+
+3. **Enter Boot Mode** (if needed):
+   - Hold the Boot button while connecting the device
+   - Release after 2-3 seconds
+
+## Updating the Firmware
+
+To update your device with the latest firmware:
+
+1. **Pull Latest Changes**:
+   ```bash
+   git pull origin main
+   ```
+
+2. **Clean the Project** (recommended before major updates):
+   ```bash
+   platformio run -t clean
+   ```
+
+3. **Rebuild and Upload**:
+   ```bash
+   platformio run -t upload
+   ```
 
 ## Development
 
